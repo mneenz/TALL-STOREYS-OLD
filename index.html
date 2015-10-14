@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en" style="background-image:url(images/Apartments_Background.jpg);background-size:100% auto;">
+	<head>
+		<title>Tall Storeys</title>
+		<meta name="description" content="Match up new developments with their branding. Good luck.">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5">
+		<link rel="stylesheet" type="text/css" media="all" href="./style.css">
+	</head>
+
+	<body> 
+		<article id="content">
+			<header id="header">
+				<a href="/index.html" title="Tall Storeys"><img title="Tall Storeys" alt="tall-storeys" src="images/header.png" width="628" height="156"></a>
+			</header>
+  			<section id="developments" ondrag='Timer.Timer.toggle();'> 
+				<span id="successMessage">
+					<a href="./index.html" title="Play again"><img src="images/play-again.png" width="112" height="35"></a>
+					<a href="./taller-storeys.html" title="Next Level"><img src="images/taller-storeys.png" width="197" height="35"></a>
+  				</span>			
+			</section>
+  			<section id="branding"> </section>
+ 
+			<footer id="social-media">
+    				<button id="showresult" onclick="myFunction();" value="0" title="Cheat" style="background: url(images/cheat.gif) no-repeat;background-size: 64px 38px;border: none;outline: 0;width: 64px;height: 39px;cursor: pointer;"></button>
+				<a href="http://www.letterbox.net.au/tall-storeys-2/" class="desktoplink" title="Tall Storeys Article Link"><img src="images/about.png" width="247" height="35"></a>
+
+				<a href="https://www.facebook.com/sharer/sharer.php?u=http://tallstoreys.com.au/" title="Facebook" target="popup" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://tallstoreys.com.au/','Facebook','width=600,height=400')"><img src="images/facebook.png" width="26" height="26"></a>
+				<a href="https://twitter.com/home?status=I%20just%20played%20the%20Tall%20Storeys%20game!" title="Twitter" target="popup" onclick="window.open('https://twitter.com/home?status=I%20just%20played%20the%20Tall%20Storeys%20game!','name','width=600,height=400')"><img src="images/twitter.png" width="38" height="26"></a>
+
+  				<span id="stopwatch">00:00:00</span>
+
+				<div id="fb-root"></div>
+                
+			<!--Facebook Share-->
+						<script>(function(d, s, id) {
+						var js, fjs = d.getElementsByTagName(s)[0];
+						if (d.getElementById(id)) return;
+						js = d.createElement(s); js.id = id;
+						js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=204601976307748&version=v2.0";
+						fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));</script>
+
+			<!--jQuery Library-->
+						<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+						<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+						<script type="text/javascript" src="jquery.timer.js"></script>
+						<script src="jquery.ui.touch-punch.min.js"></script>
+                       
+				<!--Typekit-->
+						<script src="//use.typekit.net/ssu2zqx.js"></script>
+						<script>try{Typekit.load();}catch(e){}</script>
+
+						<script type="text/javascript">
+
+							//Load all images in background
+							var heroArray = [
+								'images/Apartments_Background.jpg',
+								'images/Apartments_Art+Soul_Architecture_GS_Cheat.png',
+								'images/Apartments_B_Architecture_GS_Cheat.png',
+								'images/Apartments_Bouliste_Architecture_GS_Cheat.png',
+								'images/Apartments_C3_Architecture_GS_Cheat.png',
+								'images/Apartments_Haus_Architecture_GS_Cheat.png',
+								'images/Apartments_Jacques_Architecture_GS_Cheat.png',
+								'images/Apartments_Luxton_Architecture_GS_Cheat.png',
+								'images/Apartments_Essence_Architecture_GS_Cheat.png',
+								'images/Apartments_Queens_Architecture_GS_Cheat.png',
+								'images/Apartments_Art+Soul_Architecture.png',
+								'images/Apartments_B_Architecture.png',
+								'images/Apartments_Bouliste_Architecture.png',
+								'images/Apartments_C3_Architecture.png',
+								'images/Apartments_Haus_Architecture.png',
+								'images/Apartments_Jacques_Architecture.png',
+								'images/Apartments_Luxton_Architecture.png',
+								'images/Apartments_Essence_Architecture.png',
+								'images/Apartments_Queens_Architecture.png',
+								'images/Apartments_Art+Soul_Logo_Cheat.png',
+								'images/Apartments_B_Logo_Cheat.png',
+								'images/Apartments_Bouliste_Logo_Cheat.png',
+								'images/Apartments_C3_Logo_Cheat.png',
+								'images/Apartments_Haus_Logo_Cheat.png',
+								'images/Apartments_Jacques_Logo_Cheat.png',
+								'images/Apartments_Luxton_Logo_Cheat.png',
+								'images/Apartments_Essence_Logo_Cheat.png',
+								'images/Apartments_Queens_Logo_Cheat.png',
+								'images/successmessage.png'
+							]
+
+							function preCacheHeros(){
+								for(i = 0; i < heroArray.length; i++){
+									var url = heroArray[i],
+									img = new Image();
+									img.src = url;
+								};
+							};
+ 
+							window.onload = preCacheHeros();
+
+
+							//Start game script
+							var correctDevelopments = 0;
+							$( init );
+ 
+							function init() {
+
+								// Reset the game
+								correctDevelopments = 0;
+								$('#branding').html( '' );
+								$('#successMessage').css("display", "none");
+	
+
+								// Create the pile of shuffled developments
+								var numbers = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+								numbers.sort( function() { return Math.random() - .5 } );
+ 
+								for ( var i=0; i<9; i++ ) {
+									$('<div>' + '</div>').data( 'number', numbers[i] ).attr( 'id', 'development'+numbers[i] ).appendTo( '#developments' ).draggable( {
+										containment: '#content',
+										stack: '#developments div',
+										cursor: 'move',
+										revert: true
+									} );
+								}
+ 
+								// Create the branding boxes
+								var words = [ 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine' ];
+								for ( var i=1; i<=9; i++ ) {
+									$('<div>' + '</div>').data( 'number', i ).attr( 'id', 'branding'+words[i-1] ).attr( 'class', 'branding' ).appendTo( '#branding' ).droppable( {
+									accept: '#developments div',
+									hoverClass: 'hovered',
+									drop: handleBrandingDrop
+									} );
+								}
+							}
+
+							// Show cheat
+							var i = -1;
+							i<9;
+							function myFunction() {
+								var resultnumbers = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+								var resultwords = [ 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine' ];
+								i++; 
+								$('#development'+resultnumbers[i]).addClass( 'cheat');
+								$('#branding'+resultwords[i]).addClass( 'cheat' );
+							}
+
+							function handleBrandingDrop( event, ui ) {
+								var brandingNumber = $(this).data( 'number' );
+								var developmentNumber = ui.draggable.data( 'number' );
+ 
+								// If the development was dropped to the correct branding,
+								// position the developments directly on top of the branding
+								// and prevent it being dragged
+ 
+								if ( brandingNumber == developmentNumber ) {
+									ui.draggable.addClass( 'correct' );
+									ui.draggable.draggable( 'disable' );
+									$(this).droppable( 'disable' );
+									ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+									ui.draggable.draggable( 'option', 'revert', false );
+									correctDevelopments++;
+								} 
+   
+								// If all the developments have been placed correctly then display a message
+								// and reset the developments for another go
+ 
+								if ( correctDevelopments == 9 ) {
+									$('#successMessage').css("display", "block");
+									$('#developments').css('background-image', 'url(images/successmessage.png)');
+									Timer.resetStopwatch();
+									//$('#stopwatch').clone().appendTo( '#successMessage>span');
+								}
+
+							}
+
+							// Timer
+							var Timer = new (function() {
+								var $stopwatch, // Stopwatch element on the page
+								incrementTime = 70, // Timer speed in milliseconds
+								currentTime = 0, // Current time in hundredths of a second
+								updateTimer = function() {
+									$stopwatch.html(formatTime(currentTime));
+									currentTime += incrementTime / 10;
+								},
+
+								initz = function() {
+									$stopwatch = $('#stopwatch');
+									Timer.Timer = $.timer(updateTimer, incrementTime, true);
+								};
+
+								this.resetStopwatch = function() {
+									this.Timer.stop().once();
+								};
+
+								$(initz);
+							});
+
+							// Common functions
+							function pad(number, length) {
+								var str = '' + number;
+								while (str.length < length) {str = '0' + str;}
+								return str;
+							}
+
+							function formatTime(time) {
+								var min = parseInt(time / 6000),
+								sec = parseInt(time / 100) - (min * 60),
+								hundredths = pad(time - (sec * 100) - (min * 6000), 2);
+								return (min > 0 ? pad(min, 2) : "00") + ":" + pad(sec, 2) + ":" + hundredths;
+							}
+
+					</script>
+                    
+			<!--Google Analytics-->
+					<script>
+						(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+							(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+							m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+						})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+					ga('create', 'UA-60044486-1', 'auto');
+					ga('send', 'pageview');
+					</script>
+                    
+				</footer>
+
+		</article>
+	</body>
+</html>
